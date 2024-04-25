@@ -75,7 +75,16 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem onClick={handleClose}>More details</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    navigate(`photoStatistics/${res.id}`, {
+                      state: { url: res.urls.regular },
+                    });
+                  }}
+                >
+                  More details
+                </MenuItem>
                 {userPortfolio && (
                   <MenuItem
                     onClick={() => {

@@ -155,3 +155,31 @@ export interface FetchRes {
   total_pages: number;
   results: Results[];
 }
+
+export type ValuesType = {
+  date: string;
+  value: number;
+};
+
+export type HistoricalType = {
+  change: number;
+  quantity: number;
+  resolution: "days" | "hours";
+  values: ValuesType[];
+};
+export interface PhotoStatisticsTypes {
+  downloads: {
+    total: number;
+    historical: HistoricalType;
+  };
+  id: string;
+  likes: {
+    total: number;
+    historical: HistoricalType;
+  };
+  slug: string;
+  views: {
+    total: number;
+    historical: HistoricalType;
+  };
+}

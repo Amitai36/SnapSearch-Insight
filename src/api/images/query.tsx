@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { queryImage } from "./fetch";
+import { getPhotoStatistics, queryImage } from "./fetch";
 import { QueryImageProps } from "./types";
 
 export const useQueryImage = ({
@@ -8,10 +8,14 @@ export const useQueryImage = ({
   orderBy,
 }: QueryImageProps) => {
   return useQuery(
-    "images",
+    ["images", "photo", "user"],
     () => queryImage({ photoName, pageNumber, orderBy }),
     {
       enabled: false,
     }
   );
+};
+export const useQueryPhotoStatistics = ({ id }: { id: string }) => {
+  return useQuery(["photo"], () => getPhotoStatistics({ id }), {
+  });
 };

@@ -36,10 +36,12 @@ function Display({
   const tabs = craeteTotalPages();
   return (
     <div style={{ height: "100%" }}>
-      <OrderBySearchComponent
-        orderBy={orderBy}
-        setOrderBySearch={setOrderBySearch}
-      />
+      <div>
+        <OrderBySearchComponent
+          orderBy={orderBy}
+          setOrderBySearch={setOrderBySearch}
+        />
+      </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Tabs
           value={page}
