@@ -166,6 +166,7 @@ export type HistoricalType = {
   quantity: number;
   resolution: "days" | "hours";
   values: ValuesType[];
+  average?: number;
 };
 export interface PhotoStatisticsTypes {
   downloads: {
@@ -182,4 +183,16 @@ export interface PhotoStatisticsTypes {
     total: number;
     historical: HistoricalType;
   };
+}
+export interface UserStatisticsTypes {
+  downloads: {
+    total: number;
+    historical: HistoricalType;
+  };
+  id: string;
+  views: {
+    total: number;
+    historical: HistoricalType;
+  };
+  username: string;
 }

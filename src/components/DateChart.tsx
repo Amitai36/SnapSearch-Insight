@@ -1,22 +1,35 @@
-import { Card, CardContent, CardHeader, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import Plot from "react-plotly.js";
 interface DateChartProps {
   x: string[] | Date[];
   y: number[];
   title: string;
   total: number;
+  toolTip?: string;
 }
 function DateChart(props: DateChartProps) {
-  const { x, y, title, total } = props;
+  const { x, y, title, total, toolTip } = props;
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Card sx={{ height: "100%" }}>
         <CardHeader
           sx={{ height: "5%" }}
           title={
-            <Typography bgcolor={"#3c4650"} textAlign={"center"}>
-              total: {total}
-            </Typography>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {toolTip && (
+                <Tooltip title={toolTip}>
+                  <InfoIcon />
+                </Tooltip>
+              )}
+              <Typography bgcolor={"#3c4650"}>total: {total}</Typography>
+            </div>
           }
         />
         <CardContent sx={{ height: "100%", width: "100%" }}>
@@ -54,7 +67,12 @@ function DateChart(props: DateChartProps) {
               height: 400,
               width: 400,
             }}
-            style={{ height: "100%", width: "100%" }}
+            style={{
+              height: "100%",
+              width: "100%",
+              justifyContent: "center",
+              display: "flex",
+            }}
           />
         </CardContent>
       </Card>

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { OrderBySearch, PhotoStatisticsTypes } from "./types";
+import {
+  FetchRes,
+  OrderBySearch,
+  PhotoStatisticsTypes,
+  UserStatisticsTypes,
+} from "./types";
 
 const idClient = process.env.UNSPLASH_KEY;
 
@@ -13,7 +18,7 @@ export const queryImage = async ({
   orderBy: OrderBySearch;
 }) => {
   const res = axios
-    .get(
+    .get<FetchRes>(
       `https://api.unsplash.com/search/photos?page=${pageNumber}&query=${photoName}&client_id=${idClient}&per_page=30&order_by=${orderBy}`
     )
     .then((res) => res.data);
@@ -26,6 +31,16 @@ export const getPhotoStatistics = async ({ id }: { id: string }) => {
   const res = axios
     .get<PhotoStatisticsTypes>(
       `https://api.unsplash.com/photos/${id}/statistics?&client_id=${idClient}`
+    )
+    .then((res) => res.data);
+
+  return res;
+};
+export const getUserStatistics = async ({ name }: { name: string }) => {
+  // `https://api.unsplash.com/users/okrema/photos?client_id=${idClient}`
+  const res = axios
+    .get<UserStatisticsTypes>(
+      `https://api.unsplash.com/users/${name}/statistics?&client_id=${idClient}`
     )
     .then((res) => res.data);
 

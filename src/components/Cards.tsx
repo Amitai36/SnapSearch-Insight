@@ -83,7 +83,17 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                     });
                   }}
                 >
-                  More details
+                  photo statistics
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    navigate(`userStatistics/${user.username}`, {
+                      // state: { url: user },
+                    });
+                  }}
+                >
+                  User statistics
                 </MenuItem>
                 {userPortfolio && (
                   <MenuItem

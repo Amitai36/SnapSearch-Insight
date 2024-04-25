@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getPhotoStatistics, queryImage } from "./fetch";
+import { getPhotoStatistics, getUserStatistics, queryImage } from "./fetch";
 import { QueryImageProps } from "./types";
 
 export const useQueryImage = ({
@@ -16,6 +16,16 @@ export const useQueryImage = ({
   );
 };
 export const useQueryPhotoStatistics = ({ id }: { id: string }) => {
-  return useQuery(["photo"], () => getPhotoStatistics({ id }), {
-  });
+  return useQuery(
+    ["photo", "statistics"],
+    () => getPhotoStatistics({ id }),
+    {}
+  );
+};
+export const useQueryUserStatistics = ({ name }: { name: string }) => {
+  return useQuery(
+    ["photo", "statistics"],
+    () => getUserStatistics({ name }),
+    {}
+  );
 };
