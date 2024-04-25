@@ -1,6 +1,13 @@
+export type OrderBySearch =
+  | "latest"
+  | "oldest"
+  | "popular"
+  | "views"
+  | "downloads";
 export interface QueryImageProps {
   photoName: string;
   pageNumber: number;
+  orderBy: OrderBySearch;
 }
 type User = {
   accepted_tos: boolean;

@@ -18,7 +18,8 @@ import moment from "moment";
 
 import { Results } from "../api/images/types";
 import LongTextComponent from "./LongTextComponent";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Sharing from "./Sharing";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -42,7 +43,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
   const userPortfolio = res.user.social?.portfolio_url;
   const [expanded, setExpanded] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [location, setLocation] = React.useState(false);
+  const [share, setShare] = React.useState(false);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -85,9 +86,23 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                     portfolio
                   </MenuItem>
                 )}
-                <MenuItem LinkComponent={Link}   onClick={handleClose()}>
-                  location
-                </MenuItem>
+                {user.location && (
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      navigate("/map", {
+                        state: {
+                          location: user.location ?? "",
+                          description: res?.description ?? "",
+                          title: res.tags[0].title ?? "",
+                          url: res.urls.thumb ?? "",
+                        },
+                      });
+                    }}
+                  >
+                    location
+                  </MenuItem>
+                )}
               </Menu>
             </>
           }
@@ -109,7 +124,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share">
+          <IconButton onClick={() => setShare(!share)} aria-label="share">
             <ShareIcon />
           </IconButton>
           {res.tags.length > 0 && (
@@ -125,12 +140,13 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            {res.tags.map((tag) => (
-              <Typography>{tag?.source?.description}</Typography>
+            {res.tags.map((tag, index) => (
+              <Typography key={index}>{tag?.source?.description}</Typography>
             ))}
           </CardContent>
         </Collapse>
       </Card>
+      {share && <Sharing open={share} setOpen={setShare} url={res.urls.full} />}
     </div>
   );
 }

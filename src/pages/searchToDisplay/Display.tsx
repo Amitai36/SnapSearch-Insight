@@ -1,15 +1,20 @@
 import { Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
-import { FetchRes } from "../../api/images/types";
+import { FetchRes, OrderBySearch } from "../../api/images/types";
 import CardsToDisplayImages from "../../components/Cards";
+import OrderBySearchComponent from "../../components/OrderBySearchComponent";
 
 function Display({
   items,
   setPage,
   page,
+  orderBy,
+  setOrderBySearch,
 }: {
   items: FetchRes;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   page: number;
+  orderBy: OrderBySearch;
+  setOrderBySearch: React.Dispatch<React.SetStateAction<OrderBySearch>>;
 }) {
   const matches730 = useMediaQuery("(min-width:730px)");
   const matches500 = useMediaQuery("(min-width:500px)");
@@ -31,8 +36,18 @@ function Display({
   const tabs = craeteTotalPages();
   return (
     <div style={{ height: "100%" }}>
+      <OrderBySearchComponent
+        orderBy={orderBy}
+        setOrderBySearch={setOrderBySearch}
+      />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Tabs value={page} onChange={(_e, NV) => setPage(NV)}>
+        <Tabs
+          value={page}
+          onChange={(_e, NV) => {
+            window.sessionStorage.setItem("page", NV);
+            setPage(NV);
+          }}
+        >
           {tabs.map((tab) => tab)}
         </Tabs>
       </div>

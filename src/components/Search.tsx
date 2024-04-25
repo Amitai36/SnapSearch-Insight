@@ -5,13 +5,15 @@ interface SearchProps {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   setActiveSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Search(props: SearchProps) {
-  const { setValue, value, setActiveSearch } = props;
+  const { setValue, value, setActiveSearch, setPage } = props;
 
   const handleSearch = () => {
     setActiveSearch((prev) => !prev);
+    setPage(1);
   };
   return (
     <div

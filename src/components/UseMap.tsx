@@ -13,6 +13,7 @@ interface MapProps {
 
 function UseMap() {
   const { state } = useLocation();
+  console.log("🚀 ~ UseMap ~ state :", state )
   const { description, location, title, url } = state as MapProps;
   const popupTemplate = {
     content: [
