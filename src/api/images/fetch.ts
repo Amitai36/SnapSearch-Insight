@@ -46,4 +46,12 @@ export const getUserStatistics = async ({ name }: { name: string }) => {
 
   return res;
 };
-// Using the hook
+export const getUserPhotos = async ({ name }: { name: string }) => {
+  const res = axios
+    .get<FetchRes["results"]>(
+      `https://api.unsplash.com/users/${name}/photos?&client_id=${idClient}&per_page=30`
+    )
+    .then((res) => res.data);
+
+  return res;
+};

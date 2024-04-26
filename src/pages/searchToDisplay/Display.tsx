@@ -1,7 +1,8 @@
-import { Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 import { FetchRes, OrderBySearch } from "../../api/images/types";
-import CardsToDisplayImages from "../../components/Cards";
 import OrderBySearchComponent from "../../components/OrderBySearchComponent";
+import ResponsiveCardDisplay from "../ResponsiveCardDisplay";
+import IndexTabs from "../../components/IndexTabs";
 
 function Display({
   items,
@@ -16,8 +17,6 @@ function Display({
   orderBy: OrderBySearch;
   setOrderBySearch: React.Dispatch<React.SetStateAction<OrderBySearch>>;
 }) {
-  const matches730 = useMediaQuery("(min-width:730px)");
-  const matches500 = useMediaQuery("(min-width:500px)");
   const craeteTotalPages = () => {
     const tabs = [];
     const pages = items.total_pages;
@@ -43,25 +42,18 @@ function Display({
         />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Tabs
-          value={page}
+        <IndexTabs
           onChange={(_e, NV) => {
             window.sessionStorage.setItem("page", NV);
             setPage(NV);
+            
           }}
-        >
-          {tabs.map((tab) => tab)}
-        </Tabs>
+          setPage={setPage}
+          value={page}
+          tabsLength={items.total_pages}
+        />
       </div>
-      <Grid container spacing={2} display={"flex"} justifyContent={"center"}>
-        {items.results.map((res) => {
-          return (
-            <Grid key={res.id} xs={matches730 ? 4 : matches500 ? 6 : 12} item>
-              <CardsToDisplayImages res={res} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      <ResponsiveCardDisplay items={items.results} />
     </div>
   );
 }

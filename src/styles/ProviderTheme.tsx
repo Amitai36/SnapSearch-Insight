@@ -18,7 +18,9 @@ function ProviderTheme(props: ProviderThemeProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div style={{ height: "100vh", width: "100vw" }}>{props.children}</div>
+      <div style={{ height: "100vh", width: "100vw", maxWidth: "100%" }}>
+        {props.children}
+      </div>
     </ThemeProvider>
   );
 }

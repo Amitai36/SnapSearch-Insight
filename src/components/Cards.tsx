@@ -13,12 +13,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { MenuItem, Menu } from "@mui/material";
+import { MenuItem, Menu, Button } from "@mui/material";
 import moment from "moment";
 
 import { Results } from "../api/images/types";
 import LongTextComponent from "./LongTextComponent";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Sharing from "./Sharing";
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -39,12 +39,12 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function CardsToDisplayImages({ res }: { res: Results }) {
   const user = res.user;
-  const creatorName = user.last_name + " " + user.first_name;
   const userPortfolio = res.user.social?.portfolio_url;
   const [expanded, setExpanded] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [share, setShare] = React.useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -64,7 +64,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           action={
             <>
               <IconButton aria-label="settings" onClick={handleClick}>
-                <MoreVertIcon />
+                {!user.location && pathname !== "/" ? "" : <MoreVertIcon />}
               </IconButton>
               <Menu
                 anchorEl={anchorEl}
@@ -75,35 +75,37 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    navigate(`photoStatistics/${res.id}`, {
-                      state: { url: res.urls.regular },
-                    });
-                  }}
-                >
-                  photo statistics
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    navigate(`userStatistics/${user.username}`, {
-                      // state: { url: user },
-                    });
-                  }}
-                >
-                  User statistics
-                </MenuItem>
-                {userPortfolio && (
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      window.open(userPortfolio, "_blank");
-                    }}
-                  >
-                    portfolio
-                  </MenuItem>
+                {pathname === "/" && (
+                  <>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        navigate(`photoStatistics/${res.id}`, {
+                          state: { url: res.urls.regular },
+                        });
+                      }}
+                    >
+                      photo statistics
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        navigate(`userStatistics/${user.username}`);
+                      }}
+                    >
+                      User statistics
+                    </MenuItem>
+                    {userPortfolio && (
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          window.open(userPortfolio, "_blank");
+                        }}
+                      >
+                        portfolio
+                      </MenuItem>
+                    )}
+                  </>
                 )}
                 {user.location && (
                   <MenuItem
@@ -113,7 +115,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                         state: {
                           location: user.location ?? "",
                           description: res?.description ?? "",
-                          title: res.tags[0].title ?? "",
+                          title: res?.tags ? res.tags[0].title : "",
                           url: res.urls.thumb ?? "",
                         },
                       });
@@ -125,7 +127,14 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
               </Menu>
             </>
           }
-          title={creatorName}
+          title={
+            <Button
+              disabled={pathname !== "/"}
+              onClick={() => navigate(`userPhotos/${user.username}`)}
+            >
+              creatorName
+            </Button>
+          }
           subheader={moment(res.created_at).format("YYYY MMM DD")}
         />
         <CardMedia
@@ -146,7 +155,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           <IconButton onClick={() => setShare(!share)} aria-label="share">
             <ShareIcon />
           </IconButton>
-          {res.tags.length > 0 && (
+          {res?.tags && res?.tags?.length > 0 && (
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -159,7 +168,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            {res.tags.map((tag, index) => (
+            {res?.tags?.map((tag, index) => (
               <Typography key={index}>{tag?.source?.description}</Typography>
             ))}
           </CardContent>

@@ -88,7 +88,7 @@ export type Results = {
   promoted_at: Date;
   slug: string;
   sponsorship: string;
-  tags: {
+  tags?: {
     source: {
       ancestry: {
         category: { slug: string; pretty_slug: string };
