@@ -5,10 +5,12 @@ import UseMap from "./components/UseMap";
 import PhotoStatistics from "./pages/statistics/PhotoStatistics";
 import UserStatistics from "./pages/statistics/UserStatistics";
 import UserPhotos from "./pages/UserPhotos";
+import ChangeLang from "./components/ChangeLang";
 
 function App() {
   return (
     <ProviderTheme>
+      <ChangeLang />  
       <Routes>
         <Route path="/" element={<SearchToDisplay />} />
         <Route path="/map" element={<UseMap />} />

@@ -3,7 +3,9 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView.js";
 import Search from "@arcgis/core/widgets/Search";
 import { useLocation } from "react-router-dom";
-
+import * as intl from "@arcgis/core/intl.js";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 interface MapProps {
   location: string;
   url: string;
@@ -12,6 +14,12 @@ interface MapProps {
 }
 
 function UseMap() {
+  const {
+    "1": { language },
+    t,
+  } = useTranslation();
+  intl.setLocale(language);
+  toast.warning(t("The map is only in English"));
   const { state } = useLocation();
   const { description, location, title, url } = state as MapProps;
   const popupTemplate = {
@@ -55,7 +63,7 @@ function UseMap() {
       });
       searchAdresses.search(location);
     });
-  }, []);
+  }, [language]);
 
   return <div id="mapDiv" style={{ height: "100%", width: "100%" }} />;
 }

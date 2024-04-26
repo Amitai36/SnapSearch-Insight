@@ -10,7 +10,6 @@ interface TabsProps {
 const TabComponent = (props: TabsProps) => {
   const { tabs, onChange, value } = props;
   const [currentPage, setCurrentPage] = useState(0);
-  console.log("🚀 ~ TabComponent ~ currentPage:", currentPage);
   const tabsPerPage = 10; // You can adjust this value based on your preference
 
   const totalPages = Math.ceil(tabs.length / tabsPerPage);

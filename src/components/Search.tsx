@@ -1,5 +1,6 @@
 import { SearchOff } from "@mui/icons-material";
 import { Button, TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface SearchProps {
   value: string;
@@ -9,6 +10,8 @@ interface SearchProps {
 }
 
 function Search(props: SearchProps) {
+  const { t } = useTranslation();
+  const searchLable = t("searchImage");
   const { setValue, value, setActiveSearch, setPage } = props;
 
   const handleSearch = () => {
@@ -25,6 +28,7 @@ function Search(props: SearchProps) {
       }}
     >
       <TextField
+        label={searchLable}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleSearch();

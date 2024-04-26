@@ -7,6 +7,8 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import Plot from "react-plotly.js";
+
+import { useTranslation } from "react-i18next";
 interface DateChartProps {
   x: string[] | Date[];
   y: number[];
@@ -15,6 +17,18 @@ interface DateChartProps {
   toolTip?: string;
 }
 function DateChart(props: DateChartProps) {
+  const {
+    t,
+    "1": { language },
+  } = useTranslation();
+  const totalWord = t("total");
+  const Dates = t("Dates");
+  const Sum = t("Sum");
+  const shortMonths = t("shortMonths");
+  const months = t("months");
+  const shortDays = t("shortDays");
+  const days = t("days");
+
   const { x, y, title, total, toolTip } = props;
   return (
     <div style={{ height: "100%", width: "100%" }}>
@@ -28,12 +42,43 @@ function DateChart(props: DateChartProps) {
                   <InfoIcon />
                 </Tooltip>
               )}
-              <Typography bgcolor={"#3c4650"}>total: {total}</Typography>
+              <Typography bgcolor={"#3c4650"}>
+                {totalWord}: {total}
+              </Typography>
             </div>
           }
         />
         <CardContent sx={{ height: "100%", width: "100%" }}>
           <Plot
+            config={{
+              locale: language,
+              locales: {
+                he: {
+                  moduleType: "locale",
+                  name: "he",
+                  dictionary: {},
+                  format: {
+                    days: days.split(","),
+                    shortDays: shortDays.split(","),
+                    months: months.split(","),
+                    shortMonths: shortMonths.split(","),
+                    date: "%d/%m/%Y",
+                  },
+                },
+                en: {
+                  moduleType: "locale",
+                  name: "en",
+                  dictionary: {},
+                  format: {
+                    days: days.split(","),
+                    shortDays: shortDays.split(","),
+                    months: months.split(","),
+                    shortMonths: shortMonths.split(","),
+                    date: "%d/%m/%Y",
+                  },
+                },
+              },
+            }}
             data={[
               {
                 x,
@@ -52,6 +97,7 @@ function DateChart(props: DateChartProps) {
             ]}
             layout={{
               showlegend: false,
+              // calendar: "hebrew",
               autosize: false,
               title: {
                 text: title,
@@ -62,8 +108,8 @@ function DateChart(props: DateChartProps) {
               },
               paper_bgcolor: "#37414b",
               plot_bgcolor: "#37414b",
-              xaxis: { color: "#FFF", title: "Dates" },
-              yaxis: { color: "#FFF", title: "Sum " },
+              xaxis: { color: "#FFF", title: Dates },
+              yaxis: { color: "#FFF", title: Sum },
               height: 400,
               width: 400,
             }}

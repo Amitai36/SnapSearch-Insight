@@ -7,6 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 
 interface DialogComponentProps {
   open: boolean;
@@ -29,29 +30,27 @@ export default function DialogComponent(props: DialogComponentProps) {
     setOpen(false);
   };
 
+  const { t } = useTranslation();
+  const close = t("closeDialog");
+
   return (
-    <React.Fragment>
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <DialogTitle color={color} id="responsive-dialog-title">
-          {text}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>{content}</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            close
-          </Button>
-          {/* <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button> */}
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
+    <Dialog
+      fullScreen={fullScreen}
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle color={color} id="responsive-dialog-title">
+        {text}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText>{content}</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleClose}>
+          {close}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

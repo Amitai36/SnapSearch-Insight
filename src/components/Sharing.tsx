@@ -7,6 +7,7 @@ import {
   FacebookShareButton,
 } from "react-share";
 import DialogComponent from "./DialogComponent";
+import { useTranslation } from "react-i18next";
 
 interface SharingProps {
   url: string;
@@ -15,6 +16,8 @@ interface SharingProps {
 }
 
 function Sharing(props: SharingProps) {
+  const { t } = useTranslation();
+  const share = t("sharing");
   const { url, open, setOpen } = props;
   return (
     <DialogComponent
@@ -33,7 +36,7 @@ function Sharing(props: SharingProps) {
       }
       open={open}
       setOpen={setOpen}
-      title={{ color: "info", text: "sharing!" }}
+      title={{ color: "info", text: share }}
     />
   );
 }

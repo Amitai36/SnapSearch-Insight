@@ -15,6 +15,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { MenuItem, Menu, Button } from "@mui/material";
 import moment from "moment";
+import "moment/dist/locale/he";
+import { useTranslation } from "react-i18next";
 
 import { Results } from "../api/images/types";
 import LongTextComponent from "./LongTextComponent";
@@ -27,17 +29,27 @@ interface ExpandMoreProps extends IconButtonProps {
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   //   const { expand, ...other } = props;
-  const { ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+  const { expand, ...other } = props;
+  return <IconButton aria-expanded={expand} {...other} />;
+})(({ theme, expand }) => {
+  return {
+    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  };
+});
 
 export default function CardsToDisplayImages({ res }: { res: Results }) {
+  const trans = useTranslation();
+  const photoStatistics = trans.t("photoStatistics");
+  const userStatistics = trans.t("userStatistics");
+  const portfolio = trans.t("portfolio");
+  const location = trans.t("location");
+  moment.locale(trans[1].language);
+
+  const createdAt = res.created_at;
   const user = res.user;
   const userPortfolio = res.user.social?.portfolio_url;
   const [expanded, setExpanded] = React.useState(false);
@@ -76,7 +88,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
                 {pathname === "/" && (
-                  <>
+                  <div>
                     <MenuItem
                       onClick={() => {
                         handleClose();
@@ -85,7 +97,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                         });
                       }}
                     >
-                      photo statistics
+                      {photoStatistics}
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
@@ -93,7 +105,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                         navigate(`userStatistics/${user.username}`);
                       }}
                     >
-                      User statistics
+                      {userStatistics}
                     </MenuItem>
                     {userPortfolio && (
                       <MenuItem
@@ -102,10 +114,10 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                           window.open(userPortfolio, "_blank");
                         }}
                       >
-                        portfolio
+                        {portfolio}
                       </MenuItem>
                     )}
-                  </>
+                  </div>
                 )}
                 {user.location && (
                   <MenuItem
@@ -121,7 +133,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                       });
                     }}
                   >
-                    location
+                    {location}
                   </MenuItem>
                 )}
               </Menu>
@@ -132,10 +144,10 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
               disabled={pathname !== "/"}
               onClick={() => navigate(`userPhotos/${user.username}`)}
             >
-              creatorName
+              {user.name}
             </Button>
           }
-          subheader={moment(res.created_at).format("YYYY MMM DD")}
+          subheader={moment(createdAt).format("LL")}
         />
         <CardMedia
           component="img"
@@ -144,7 +156,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           alt={res.alt_description}
         />
         <CardContent sx={{ maxHeight: "90px", height: "90px" }}>
-          <Typography variant="body2" color="text.secondary">
+          <Typography component="span" variant="body2" color="text.secondary">
             {<LongTextComponent text={res?.description ?? ""} />}
           </Typography>
         </CardContent>
@@ -169,7 +181,9 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {res?.tags?.map((tag, index) => (
-              <Typography key={index}>{tag?.source?.description}</Typography>
+              <Typography component="span" key={index}>
+                {tag?.source?.description}
+              </Typography>
             ))}
           </CardContent>
         </Collapse>

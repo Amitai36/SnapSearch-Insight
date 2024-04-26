@@ -3,6 +3,7 @@ import { useQueryUserStatistics } from "../../api/images/query";
 import DateChart from "../../components/DateChart";
 import { HistoricalType } from "../../api/images/types";
 import { Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const getDatesAndValues = (data: HistoricalType | undefined) => {
   const dates = data?.values.map(
@@ -14,6 +15,7 @@ const getDatesAndValues = (data: HistoricalType | undefined) => {
 
 function UserStatistics() {
   const { name } = useParams();
+  const { t } = useTranslation();
   const { data, isLoading } = useQueryUserStatistics({
     name: name as string,
   });
@@ -30,27 +32,32 @@ function UserStatistics() {
   const sumAllDatesCharts = [
     {
       total: views?.total ?? 0,
-      title: "Views by dates last month",
+      title: t("Views by dates last month"),
       x: viewDates ?? [],
       y: viewValues ?? [],
-      information: "average is: " + views?.historical?.average,
+      information: t("average is") + ": " + views?.historical?.average,
     },
     {
       total: downloads?.total ?? 0,
-      title: "Downloads by dates last month",
+      title: t("Downloads by dates last month"),
       x: downloadsDates ?? [],
       y: downloadsValues ?? [],
-      information: "average is: " + downloads?.historical?.average,
+      information: t("average is") + ":" + downloads?.historical?.average,
     },
   ];
   return (
     <>
       {isLoading ? (
-        <Typography>Loading</Typography>
+        <Typography variant="h5">{t("loading") + "..."}</Typography>
       ) : (
         <div>
-          <Typography height={"5%"} variant="h6" textAlign={"center"}>
-            user: {data?.username}
+          <Typography
+            component={"span"}
+            height={"5%"}
+            variant="h6"
+            textAlign={"center"}
+          >
+            {t("user")}: {data?.username}
           </Typography>
           <Grid height={"90%"} container spacing={2}>
             {sumAllDatesCharts.map((chart, index) => (

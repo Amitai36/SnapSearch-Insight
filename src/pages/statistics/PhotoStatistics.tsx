@@ -3,6 +3,7 @@ import { useQueryPhotoStatistics } from "../../api/images/query";
 import DateChart from "../../components/DateChart";
 import { HistoricalType } from "../../api/images/types";
 import { Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const getDatesAndValues = (data: HistoricalType | undefined) => {
   const dates = data?.values.map(
@@ -13,6 +14,11 @@ const getDatesAndValues = (data: HistoricalType | undefined) => {
 };
 
 function PhotoStatistics() {
+  const { t } = useTranslation();
+  const slug = t("slug");
+  const Views_by_dates_last_month = t("Views by dates last month");
+  const Likes_by_dates_last_month = t("Likes by dates last month");
+  const Downloads_by_dates_last_month = t("Downloads by dates last month");
   const { photoId } = useParams();
   const {
     state: { url },
@@ -35,19 +41,19 @@ function PhotoStatistics() {
   const sumAllDatesCharts = [
     {
       total: views?.total ?? 0,
-      title: "Views by dates last month",
+      title: Views_by_dates_last_month,
       x: viewDates ?? [],
       y: viewValues ?? [],
     },
     {
       total: likes?.total ?? 0,
-      title: "Likes by dates last month",
+      title: Likes_by_dates_last_month,
       x: likesDates ?? [],
       y: likesValues ?? [],
     },
     {
       total: downloads?.total ?? 0,
-      title: "Downloads by dates last month",
+      title: Downloads_by_dates_last_month,
       x: downloadsDates ?? [],
       y: downloadsValues ?? [],
     },
@@ -66,7 +72,7 @@ function PhotoStatistics() {
           }}
         >
           <Typography height={"5%"} variant="h6" textAlign={"center"}>
-            slug: {data?.slug}
+            {slug}: {data?.slug}
           </Typography>
           <Grid height={"90%"} container spacing={2}>
             {sumAllDatesCharts.map((chart, index) => (
