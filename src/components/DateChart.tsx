@@ -28,8 +28,23 @@ function DateChart(props: DateChartProps) {
   const months = t("months");
   const shortDays = t("shortDays");
   const days = t("days");
-
+  const dictionary = t("dictionary");
   const { x, y, title, total, toolTip } = props;
+  const locales = {
+    [language]: {
+      moduleType: "locale",
+      name: language,
+      dictionary,
+      format: {
+        days: days.split(","),
+        shortDays: shortDays.split(","),
+        months: months.split(","),
+        shortMonths: shortMonths.split(","),
+        date: "%d/%m/%Y",
+      },
+    },
+  };
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Card sx={{ height: "100%" }}>
@@ -52,32 +67,7 @@ function DateChart(props: DateChartProps) {
           <Plot
             config={{
               locale: language,
-              locales: {
-                he: {
-                  moduleType: "locale",
-                  name: "he",
-                  dictionary: {},
-                  format: {
-                    days: days.split(","),
-                    shortDays: shortDays.split(","),
-                    months: months.split(","),
-                    shortMonths: shortMonths.split(","),
-                    date: "%d/%m/%Y",
-                  },
-                },
-                en: {
-                  moduleType: "locale",
-                  name: "en",
-                  dictionary: {},
-                  format: {
-                    days: days.split(","),
-                    shortDays: shortDays.split(","),
-                    months: months.split(","),
-                    shortMonths: shortMonths.split(","),
-                    date: "%d/%m/%Y",
-                  },
-                },
-              },
+              locales,
             }}
             data={[
               {
@@ -97,7 +87,6 @@ function DateChart(props: DateChartProps) {
             ]}
             layout={{
               showlegend: false,
-              // calendar: "hebrew",
               autosize: false,
               title: {
                 text: title,

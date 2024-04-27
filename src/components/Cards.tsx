@@ -16,11 +16,12 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { MenuItem, Menu, Button } from "@mui/material";
 import moment from "moment";
 import "moment/dist/locale/he";
+import "moment/dist/locale/fr";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { Results } from "../api/images/types";
 import LongTextComponent from "./LongTextComponent";
-import { useLocation, useNavigate } from "react-router-dom";
 import Sharing from "./Sharing";
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -42,6 +43,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 });
 
 export default function CardsToDisplayImages({ res }: { res: Results }) {
+  console.log("🚀 ~ CardsToDisplayImages ~ res:", res);
   const trans = useTranslation();
   const photoStatistics = trans.t("photoStatistics");
   const userStatistics = trans.t("userStatistics");
@@ -141,6 +143,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           }
           title={
             <Button
+              sx={{ textAlign: "center", textWrap: "nowrap" }}
               disabled={pathname !== "/"}
               onClick={() => navigate(`userPhotos/${user.username}`)}
             >

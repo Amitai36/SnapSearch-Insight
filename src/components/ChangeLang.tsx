@@ -1,6 +1,6 @@
 import { Translate } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import DialogComponent from "./DialogComponent";
 import ReactCountryFlag from "react-country-flag";
@@ -51,6 +51,9 @@ function ChangeLang() {
   const handleClick = (langCode: string) => {
     i18n.changeLanguage(langCode);
   };
+  useEffect(() => {
+    document.body.dir = i18n.dir();
+  }, [i18n, i18n.language]);
 
   return (
     <div>
@@ -62,7 +65,13 @@ function ChangeLang() {
         setOpen={setOpenDialog}
         title={{ text: dialogTitle, color: "info" }}
         content={languages.map((language, index) => (
-          <Button key={index} onClick={() => handleClick(language.code)}>
+          <Button
+            key={index}
+            onClick={() => {
+              handleClick(language.code);
+              setOpenDialog(!openDialog);
+            }}
+          >
             {language.icon}
             {language.lang}
           </Button>

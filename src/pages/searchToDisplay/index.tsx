@@ -27,7 +27,7 @@ function SearchToDisplay() {
       window.sessionStorage.setItem("search", search);
       refetch();
     }
-  }, [activeSearch, page, orderBySearch]);
+  }, [search, refetch, activeSearch, page, orderBySearch]);
 
   return (
     <div style={{ height: "100%" }}>

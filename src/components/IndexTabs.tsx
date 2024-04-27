@@ -2,12 +2,15 @@ import { Button, Grid, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useTranslation } from "react-i18next";
 interface TabsProps {
   tabs: number[];
   value: number;
   onChange: (event: React.SyntheticEvent<Element, Event>, value: any) => void;
 }
 const TabComponent = (props: TabsProps) => {
+  const tarns = useTranslation();
+  const dir = tarns[1].dir();
   const { tabs, onChange, value } = props;
   const [currentPage, setCurrentPage] = useState(0);
   const tabsPerPage = 10; // You can adjust this value based on your preference
@@ -36,11 +39,8 @@ const TabComponent = (props: TabsProps) => {
     <div>
       <Grid container spacing={2} alignItems={"center"}>
         <Grid item xs={1}>
-          <Button
-            disabled={currentPage === 0}
-            // onClick={() => handlePageChange(currentPage - 1)}
-          >
-            <ArrowBackIosNewIcon />
+          <Button disabled={currentPage === 0}>
+            {dir === "ltr" ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
           </Button>
         </Grid>
         <Grid item xs={10}>
@@ -52,7 +52,11 @@ const TabComponent = (props: TabsProps) => {
               disabled={currentPage === totalPages - 1}
               onClick={() => handlePageChange(currentPage + 1)}
             >
-              <ArrowForwardIosIcon />
+              {dir !== "ltr" ? (
+                <ArrowBackIosNewIcon />
+              ) : (
+                <ArrowForwardIosIcon />
+              )}
             </Button>
           </div>
         </Grid>
