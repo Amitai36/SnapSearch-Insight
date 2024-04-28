@@ -11,8 +11,12 @@ import DisplaySearchRes from "./pages/DisplaySearchRes";
 function App() {
   return (
     <ProviderTheme>
-      <MainBar />
-      <div style={{ marginTop: "5%" }}>
+      <div style={{ height: "10%" }}>
+        <MainBar />
+      </div>
+      <div
+        style={{ /*  marginTop: "5%", */ maxHeight: "90%", minHeight: "90%" }}
+      >
         <Routes>
           <Route path="/" element={<SearchToDisplay />} />
           <Route path="/map" element={<UseMap />} />

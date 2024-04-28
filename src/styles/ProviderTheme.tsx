@@ -58,7 +58,6 @@ function ProviderTheme(props: ProviderThemeProps) {
               height: "100vh",
               width: "100vw",
               maxWidth: "100%",
-              flexGrow: 1,
             }}
           >
             {props.children}

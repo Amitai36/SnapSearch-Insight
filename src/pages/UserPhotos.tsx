@@ -9,7 +9,7 @@ export default function UserPhotos() {
   const user = data && data[0]?.user;
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", height: "100%" }}>
       {isLoading || !data ? (
         <Typography>Loading</Typography>
       ) : (

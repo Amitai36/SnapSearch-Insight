@@ -5,45 +5,50 @@ import { useTranslation } from "react-i18next";
 import DialogComponent from "./DialogComponent";
 import ReactCountryFlag from "react-country-flag";
 
+const languages = [
+  { code: "en", lang: "English", countryCode: "US" },
+  {
+    code: "he",
+    lang: "Hebrow",
+    countryCode: "IL",
+  },
+  {
+    code: "fr",
+    lang: "French",
+    countryCode: "FR",
+  },
+  {
+    code: "ja",
+    lang: "Japanese",
+    countryCode: "JP",
+  },
+  {
+    code: "da",
+    lang: "German",
+    countryCode: "DE",
+  },
+  {
+    code: "es",
+    lang: "spain",
+    countryCode: "es",
+  },
+  {
+    code: "it",
+    lang: "Italian",
+    countryCode: "It",
+  },
+  {
+    code: "ko",
+    lang: "Korean",
+    countryCode: "Kr",
+  },
+  {
+    code: "pt",
+    lang: "Portuguese",
+    countryCode: "pt",
+  },
+];
 function ChangeLang() {
-  const languages = [
-    {
-      code: "en",
-      lang: "english",
-      icon: (
-        <ReactCountryFlag
-          style={{ fontSize: 25 }}
-          svg
-          countryCode="US"
-          className="emojiFlag"
-        />
-      ),
-    },
-    {
-      code: "he",
-      lang: "hebrow",
-      icon: (
-        <ReactCountryFlag
-          style={{ fontSize: 25 }}
-          svg
-          countryCode="IL"
-          className="emojiFlag"
-        />
-      ),
-    },
-    {
-      code: "fr",
-      lang: "French",
-      icon: (
-        <ReactCountryFlag
-          style={{ fontSize: 25 }}
-          svg
-          countryCode="Fr"
-          className="emojiFlag"
-        />
-      ),
-    },
-  ];
   const [openDialog, setOpenDialog] = useState(false);
   const { i18n, t } = useTranslation();
   const dialogTitle = t("titleChangeDialog");
@@ -73,7 +78,12 @@ function ChangeLang() {
               setOpenDialog(!openDialog);
             }}
           >
-            {language.icon}
+            <ReactCountryFlag
+              style={{ fontSize: 25 }}
+              svg
+              countryCode={language.countryCode}
+              className="emojiFlag"
+            />
             {language.lang}
           </Button>
         ))}

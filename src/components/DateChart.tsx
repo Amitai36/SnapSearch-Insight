@@ -46,7 +46,7 @@ function DateChart(props: DateChartProps) {
   };
 
   return (
-    <div style={{ height: "100%", width: "100%", }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <Card sx={{ height: "100%" }}>
         <CardHeader
           sx={{ height: "5%" }}

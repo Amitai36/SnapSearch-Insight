@@ -25,12 +25,14 @@ function MainBar(props: MainBarProps) {
       sx={{
         backdropFilter: "blur(1px)",
         backgroundColor: "transparent",
-        height: "10%",
+        // height: "10%",
       }}
     >
       <Toolbar>
         {buttons.map((button) => (
-          <div style={{ marginInline: "10px" }}>{button}</div>
+          <div key={button.key} style={{ marginInline: "10px" }}>
+            {button}
+          </div>
         ))}
         {pathname !== "/" && <Search />}
         {components}

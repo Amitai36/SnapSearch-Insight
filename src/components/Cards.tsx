@@ -17,6 +17,12 @@ import { MenuItem, Menu, Button } from "@mui/material";
 import moment from "moment";
 import "moment/dist/locale/he";
 import "moment/dist/locale/fr";
+import "moment/dist/locale/ja";
+import "moment/dist/locale/da";
+import "moment/dist/locale/es";
+import "moment/dist/locale/it";
+import "moment/dist/locale/ko";
+import "moment/dist/locale/pt";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -48,7 +54,12 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
   const userStatistics = trans.t("userStatistics");
   const portfolio = trans.t("portfolio");
   const location = trans.t("location");
-  moment.locale(trans[1].language);
+  const language = trans.i18n.language;
+  moment.locale(language);
+  const alt =
+    res.alternative_slugs[
+      trans.i18n.language as keyof Results["alternative_slugs"]
+    ]?.replace(/-/g, " ") ?? res.alt_description;
 
   const createdAt = res.created_at;
   const user = res.user;
@@ -131,7 +142,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                       navigate("/map", {
                         state: {
                           location: user.location ?? "",
-                          description: res?.description ?? "",
+                          description: alt,
                           title: res?.tags ? res.tags[0].title : "",
                           url: res.urls.thumb ?? "",
                         },
@@ -159,11 +170,11 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           component="img"
           height="300"
           image={res.urls.small}
-          alt={res.alt_description}
+          alt={alt}
         />
         <CardContent sx={{ maxHeight: "90px", height: "90px" }}>
           <Typography component="span" variant="body2" color="text.secondary">
-            {<LongTextComponent text={res?.description ?? ""} />}
+            {<LongTextComponent text={alt ?? ""} />}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -187,8 +198,16 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {res?.tags?.map((tag, index) => (
-              <Typography component="span" key={index}>
-                {tag?.source?.description}
+              <Typography
+                onFocus={() => console.log("f")}
+                component="span"
+                key={index}
+              >
+                {
+                  tag?.source?.cover_photo?.alternative_slugs[
+                    language as keyof Results["alternative_slugs"]
+                  ]
+                }
               </Typography>
             ))}
           </CardContent>
