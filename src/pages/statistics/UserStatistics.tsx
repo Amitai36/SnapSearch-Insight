@@ -50,7 +50,7 @@ function UserStatistics() {
       {isLoading ? (
         <Typography variant="h5">{t("loading") + "..."}</Typography>
       ) : (
-        <div>
+        <div style={{ height: "100%", overflow: "hidden" }}>
           <Typography
             component={"span"}
             height={"5%"}

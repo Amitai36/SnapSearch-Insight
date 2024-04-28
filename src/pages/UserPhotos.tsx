@@ -20,7 +20,9 @@ export default function UserPhotos() {
                 sx={{ width: 100, height: 100 }}
                 src={user?.profile_image.large}
               />
-              <Typography>{user?.name}</Typography>
+              <Typography component="span" variant="h5" marginInline={"2%"}>
+                {user?.last_name ?? "" + user?.first_name ?? ""}
+              </Typography>
             </div>
             <ResponsiveCardDisplay items={data} />
           </Stack>

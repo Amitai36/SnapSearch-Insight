@@ -29,38 +29,34 @@ const TabComponent = (props: TabsProps) => {
     return (
       <Tabs value={value} onChange={onChange}>
         {currentTabs.map((tab, index) => (
-          <Tab key={index} label={tab} />
+          <Tab key={index} label={tab}/>
         ))}
       </Tabs>
     );
   };
 
   return (
-    <div>
-      <Grid container spacing={2} alignItems={"center"}>
-        <Grid item xs={1}>
-          <Button disabled={currentPage === 0}>
-            {dir === "ltr" ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
-          </Button>
-        </Grid>
-        <Grid item xs={10}>
-          {renderTabs()}
-        </Grid>
-        <Grid item xs={1}>
-          <div>
-            <Button
-              disabled={currentPage === totalPages - 1}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              {dir !== "ltr" ? (
-                <ArrowBackIosNewIcon />
-              ) : (
-                <ArrowForwardIosIcon />
-              )}
-            </Button>
-          </div>
-        </Grid>
-      </Grid>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {/* <Grid container spacing={2} alignItems={"center"}>
+        <Grid item xs={1}> */}
+      <Button disabled={currentPage === 0}>
+        {dir === "ltr" ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
+      </Button>
+      {/* </Grid> */}
+      {/* <Grid item xs={10}> */}
+      {renderTabs()}
+      {/* </Grid> */}
+      {/* <Grid item xs={1}> */}
+      <div>
+        <Button
+          disabled={currentPage === totalPages - 1}
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          {dir !== "ltr" ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
+        </Button>
+      </div>
+      {/* </Grid> */}
+      {/* </Grid> */}
     </div>
   );
 };

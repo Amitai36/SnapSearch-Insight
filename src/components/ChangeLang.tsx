@@ -57,7 +57,7 @@ function ChangeLang() {
 
   return (
     <div>
-      <Button onClick={() => setOpenDialog(!openDialog)}>
+      <Button variant="contained" onClick={() => setOpenDialog(!openDialog)}>
         <Translate />
       </Button>
       <DialogComponent
@@ -66,6 +66,7 @@ function ChangeLang() {
         title={{ text: dialogTitle, color: "info" }}
         content={languages.map((language, index) => (
           <Button
+            variant={i18n.language === language.code ? "contained" : "text"}
             key={index}
             onClick={() => {
               handleClick(language.code);
@@ -76,7 +77,7 @@ function ChangeLang() {
             {language.lang}
           </Button>
         ))}
-      ></DialogComponent>
+      />
     </div>
   );
 }

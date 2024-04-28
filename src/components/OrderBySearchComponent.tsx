@@ -23,9 +23,6 @@ function OrderBySearchComponent(props: OrderBySearchProps) {
   const { orderBy, setOrderBySearch } = props;
   return (
     <SelectComponent
-      doMoreOnChange={(e) => {
-        window.sessionStorage.setItem("orderBy", e.target.value);
-      }}
       lable={option}
       setValue={setOrderBySearch}
       value={orderBy}

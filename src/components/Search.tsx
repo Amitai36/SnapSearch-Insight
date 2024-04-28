@@ -1,23 +1,20 @@
 import { SearchOff } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 
-interface SearchProps {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  setActiveSearch: React.Dispatch<React.SetStateAction<boolean>>;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-function Search(props: SearchProps) {
-  const { t } = useTranslation();
+function Search() {
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const searchLable = t("searchImage");
-  const { setValue, value, setActiveSearch, setPage } = props;
+  const [value, setValue] = useState("");
 
   const handleSearch = () => {
-    setActiveSearch((prev) => !prev);
-    setPage(1);
+    navigate(`search?element=${value}&page=${1}`);
   };
+  const { pathname } = useLocation();
   return (
     <div
       style={{
@@ -27,20 +24,35 @@ function Search(props: SearchProps) {
         justifyItems: "center",
       }}
     >
-      <TextField
-        label={searchLable}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSearch();
-          }
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          boxShadow: pathname === "/" ? "0px 0px 20px 20px grey" : undefined,
         }}
-        size="small"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <Button size="small" onClick={handleSearch}>
-        <SearchOff />
-      </Button>
+      >
+        <TextField
+          label={searchLable}
+          InputLabelProps={{ shrink: true }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && value) {
+              handleSearch();
+            }
+          }}
+          size="small"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position={dir === "ltr" ? "start" : "end"}>
+                <Button disabled={!value} size="small" onClick={handleSearch}>
+                  <SearchOff />
+                </Button>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
     </div>
   );
 }

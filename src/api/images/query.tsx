@@ -15,9 +15,6 @@ export const useQueryImage = ({
   return useQuery(
     ["images", "photo", "user"],
     () => queryImage({ photoName, pageNumber, orderBy }),
-    {
-      enabled: false,
-    }
   );
 };
 export const useQueryPhotoStatistics = ({ id }: { id: string }) => {

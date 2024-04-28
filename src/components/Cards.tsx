@@ -43,7 +43,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 });
 
 export default function CardsToDisplayImages({ res }: { res: Results }) {
-  console.log("🚀 ~ CardsToDisplayImages ~ res:", res);
   const trans = useTranslation();
   const photoStatistics = trans.t("photoStatistics");
   const userStatistics = trans.t("userStatistics");
@@ -78,7 +77,11 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           action={
             <>
               <IconButton aria-label="settings" onClick={handleClick}>
-                {!user.location && pathname !== "/" ? "" : <MoreVertIcon />}
+                {!user.location && pathname !== "/search" ? (
+                  ""
+                ) : (
+                  <MoreVertIcon />
+                )}
               </IconButton>
               <Menu
                 anchorEl={anchorEl}
@@ -89,7 +92,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                {pathname === "/" && (
+                {pathname === "/search" && (
                   <div>
                     <MenuItem
                       onClick={() => {
@@ -104,7 +107,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                     <MenuItem
                       onClick={() => {
                         handleClose();
-                        navigate(`userStatistics/${user.username}`);
+                        navigate(`/userStatistics/${user.username}`);
                       }}
                     >
                       {userStatistics}
@@ -144,8 +147,8 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
           title={
             <Button
               sx={{ textAlign: "center", textWrap: "nowrap" }}
-              disabled={pathname !== "/"}
-              onClick={() => navigate(`userPhotos/${user.username}`)}
+              disabled={pathname !== "/search"}
+              onClick={() => navigate(`/userPhotos/${user.username}`)}
             >
               {user.name}
             </Button>
