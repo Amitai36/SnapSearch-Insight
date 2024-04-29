@@ -13,7 +13,7 @@ function MainBar(props: MainBarProps) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const buttons = [
-    <Button onClick={() => navigate("/")} size="large">
+    <Button color="info" onClick={() => navigate("/")} size="large">
       <Image fontSize="large" />
       Discovery
     </Button>,
@@ -21,23 +21,24 @@ function MainBar(props: MainBarProps) {
     <DarkMode />,
   ];
   return (
-    <AppBar
-      sx={{
-        backdropFilter: "blur(1px)",
-        backgroundColor: "transparent",
-        // height: "10%",
-      }}
-    >
-      <Toolbar>
-        {buttons.map((button) => (
-          <div key={button.key} style={{ marginInline: "10px" }}>
-            {button}
-          </div>
-        ))}
-        {pathname !== "/" && <Search />}
-        {components}
-      </Toolbar>
-    </AppBar>
+    <div style={{ maxHeight: "10%", height: "10%" }}>
+      <AppBar
+        sx={{
+          backdropFilter: "blur(1px)",
+          backgroundColor: "transparent",
+        }}
+      >
+        <Toolbar variant="dense">
+          {buttons.map((button) => (
+            <div key={button.key} style={{ marginInline: "10px" }}>
+              {button}
+            </div>
+          ))}
+          {pathname !== "/" && <Search />}
+          {components}
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 

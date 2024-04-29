@@ -69,7 +69,7 @@ function PhotoStatistics() {
             backgroundImage: `url(${url})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 100%",
-            // overflow: "hidden",
+            overflow: "hidden",
           }}
         >
           <Typography height={"5%"} variant="h6" textAlign={"center"}>
@@ -77,7 +77,7 @@ function PhotoStatistics() {
           </Typography>
           <Grid height={"90%"} container spacing={2}>
             {sumAllDatesCharts.map((chart, index) => (
-              <Grid key={index} item xs={4}>
+              <Grid height={"100%"} key={index} item xs={4}>
                 <DateChart
                   title={chart.title}
                   total={chart.total}

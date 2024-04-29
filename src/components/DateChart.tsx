@@ -63,11 +63,14 @@ function DateChart(props: DateChartProps) {
             </div>
           }
         />
-        <CardContent sx={{ height: "100%", width: "100%" }}>
+        <CardContent sx={{ height: "100%", width: "100%", display: "flex" }}>
           <Plot
             config={{
               locale: language,
+              autosizable: true,
               locales,
+              responsive: true,
+              displaylogo: false,
             }}
             data={[
               {
@@ -107,6 +110,7 @@ function DateChart(props: DateChartProps) {
               width: "100%",
               justifyContent: "center",
               display: "flex",
+              position: "relative",
             }}
           />
         </CardContent>

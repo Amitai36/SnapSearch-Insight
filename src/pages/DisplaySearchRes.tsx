@@ -20,19 +20,17 @@ function DisplaySearchRes() {
   useEffect(() => {
     refetch();
   }, [orderBy, pageNumber, element]);
-  // const data = undefined;
+
   return (
-    <div style={{ marginTop: "5%" }}>
-      <Display
-        items={data}
-        orderBy={orderBy}
-        page={pageNumber}
-        setOrderBySearch={setOrderBy}
-        setPage={setPageNumber}
-        setSearchParams={setSearchParams}
-        element={element}
-      />
-    </div>
+    <Display
+      items={data}
+      orderBy={orderBy}
+      page={pageNumber}
+      setOrderBySearch={setOrderBy}
+      setPage={setPageNumber}
+      setSearchParams={setSearchParams}
+      element={element}
+    />
   );
 }
 

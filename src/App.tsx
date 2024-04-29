@@ -11,22 +11,20 @@ import DisplaySearchRes from "./pages/DisplaySearchRes";
 function App() {
   return (
     <ProviderTheme>
-      {/* <div style={{ height: "10%" }}> */}
       <MainBar />
-      {/* </div> */}
-      {/* <div style={{ maxHeight: "90%", minHeight: "90%" }}> */}
-      <Routes>
-        <Route path="/" element={<SearchToDisplay />} />
-        <Route path="/map" element={<UseMap />} />
-        <Route path="/search" element={<DisplaySearchRes />} />
-        <Route path="/userPhotos/:name" element={<UserPhotos />} />
-        <Route
-          path="/search/photoStatistics/:photoId"
-          element={<PhotoStatistics />}
-        />
-        <Route path="/userStatistics/:name" element={<UserStatistics />} />
-      </Routes>
-      {/* </div> */}
+      <div style={{ maxHeight: "90%", height: "90%" }}>
+        <Routes>
+          <Route path="/" element={<SearchToDisplay />} />
+          <Route path="/search" element={<DisplaySearchRes />} />
+          <Route
+            path="/search/photoStatistics/:photoId"
+            element={<PhotoStatistics />}
+          />
+          <Route path="/map" element={<UseMap />} />
+          <Route path="/userPhotos/:name" element={<UserPhotos />} />
+          <Route path="/userStatistics/:name" element={<UserStatistics />} />
+        </Routes>
+      </div>
     </ProviderTheme>
   );
 }
