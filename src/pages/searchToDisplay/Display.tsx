@@ -35,13 +35,12 @@ function Display({
       <div style={{ display: "flex", justifyContent: "center" }}>
         <IndexTabs
           onChange={(_e, NV) => {
-            window.sessionStorage.setItem("page", NV);
+            window.sessionStorage.setItem("page", String(NV));
             setPage(NV);
             if (setSearchParams && element)
-              setSearchParams({ element: element, page: NV + 1 });
+              setSearchParams({ element: element, page: String(NV) });
           }}
-          setPage={setPage}
-          value={page - 1}
+          value={page}
           tabsLength={items?.total_pages ?? 100}
         />
       </div>
