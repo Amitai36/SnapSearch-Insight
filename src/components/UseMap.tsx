@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView.js";
 import Search from "@arcgis/core/widgets/Search";
@@ -41,7 +41,7 @@ function UseMap() {
     ],
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const map = new Map({
       basemap: "streets-night-vector",
     });

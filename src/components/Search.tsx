@@ -1,6 +1,6 @@
 import { SearchOff } from "@mui/icons-material";
 import { Button, InputAdornment, TextField } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function Search() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const searchLable = t("searchImage");
-  const [value, setValue] = useState("");
+  const [value, setValue] = React.useState("");
 
   useHotkeys("ctrl+i", () => {
     if (inputRef.current) {

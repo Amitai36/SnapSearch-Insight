@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useQueryImage } from "../api/images/query";
-import { useEffect, useState } from "react";
+import React from "react";
 import { OrderBySearch } from "../api/images/types";
 import Display from "./searchToDisplay/Display";
 
@@ -10,14 +10,14 @@ function DisplaySearchRes() {
     ? parseInt(searchParams.get("page"))
     : 1;
   const element = searchParams.get("element") as string;
-  const [pageNumber, setPageNumber] = useState(page);
-  const [orderBy, setOrderBy] = useState<OrderBySearch>("latest");
+  const [pageNumber, setPageNumber] = React.useState(page);
+  const [orderBy, setOrderBy] = React.useState<OrderBySearch>("latest");
   const { data, refetch } = useQueryImage({
     pageNumber,
     photoName: element ?? "",
     orderBy,
   });
-  useEffect(() => {
+  React.useEffect(() => {
     refetch();
   }, [orderBy, pageNumber, element]);
 

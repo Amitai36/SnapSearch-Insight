@@ -2,14 +2,14 @@ import { Avatar, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQueryUserPhotos } from "../api/images/query";
 import ResponsiveCardDisplay from "./ResponsiveCardDisplay";
-import { useEffect, useRef } from "react";
+import React from "react";
 
 export default function UserPhotos() {
-  const scrollUp = useRef<HTMLDivElement>(null);
+  const scrollUp = React.useRef<HTMLDivElement>(null);
   const { name } = useParams();
   const { data, isLoading } = useQueryUserPhotos({ name: name as string });
   const user = data && data[0]?.user;
-  useEffect(() => {
+  React.useEffect(() => {
     if (scrollUp.current) {
       scrollUp.current?.scrollIntoView({ behavior: "smooth" });
     }
