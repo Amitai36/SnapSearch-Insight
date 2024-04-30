@@ -85,5 +85,9 @@
     "high:": "高い:",
     "low:": "低い:",
     "Toggle show closest data on hover": "ホバー時に最も近いデータの"
-  }
+  },
+  "seeMoreOnMap": "地図で表示する",
+  "showMorePhotoFromArtist": "アーティストの写真をもっと見る",
+  "seeUserStatistics": "アーティストの統計情報をもっと見る",
+  "seePhotoStatistics": "写真の統計情報を見る"
 }

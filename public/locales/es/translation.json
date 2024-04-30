@@ -88,5 +88,9 @@
     "incoming flow count:": "conteo de flujo entrante:",
     "outgoing flow count:": "conteo de flujo saliente:",
     "kde :": "kde :"
-  }
+  },
+  "seeMoreOnMap": "Ver en mapa",
+  "showMorePhotoFromArtist": "Ver más fotos del artista",
+  "seeUserStatistics": "Ver más estadísticas sobre el artista",
+  "seePhotoStatistics": "Ver estadísticas sobre la foto"
 }

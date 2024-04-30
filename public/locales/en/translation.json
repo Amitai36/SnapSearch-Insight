@@ -88,5 +88,9 @@
     "incoming flow count:": "incoming flow count:",
     "outgoing flow count:": "outgoing flow count:",
     "kde :": "KDE :"
-  }
+  },
+  "seeMoreOnMap": "See on map",
+  "showMorePhotoFromArtist": "See more photos from the artist",
+  "seeUserStatistics": "See more statistics about the artist",
+  "seePhotoStatistics": "See statistics about the photo"
 }

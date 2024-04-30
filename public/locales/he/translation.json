@@ -27,5 +27,9 @@
   "average is": "הממוצע הוא",
   "loading": "בטעינה",
   "user": "משתמש",
-  "The map is only in English": "המפה הינה באנגלית בלבד"
+  "The map is only in English": "המפה הינה באנגלית בלבד",
+  "seeMoreOnMap": "ראה על מפה",
+  "showMorePhotoFromArtist": "ראה עוד תמונות של היוצר",
+  "seeUserStatistics": "ראה עוד סטטיסטיקות על האומן",
+  "seePhotoStatistics": "ראה סטטיסטיקות על התמונה"
 }

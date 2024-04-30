@@ -89,5 +89,9 @@
     "incoming flow count:": "수신 플로우 카운트:",
     "outgoing flow count:": "소포 플로우 카운트:",
     "kde :": "KDE :"
-  }
+  },
+  "seeMoreOnMap": "지도에서 보기",
+  "showMorePhotoFromArtist": "작가의 더 많은 사진 보기",
+  "seeUserStatistics": "작가의 통계 자세히 보기",
+  "seePhotoStatistics": "사진 통계 보기"
 }

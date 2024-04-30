@@ -88,5 +88,9 @@
     "incoming flow count:": "Anzahl eingehender Flüsse:",
     "outgoing flow count:": "Anzahl ausgehender Flüsse:",
     "kde :": "kde :"
-  }
+  },
+  "seeMoreOnMap": "Auf Karte anzeigen",
+  "showMorePhotoFromArtist": "Weitere Fotos des Künstlers anzeigen",
+  "seeUserStatistics": "Mehr Statistiken über den Künstler anzeigen",
+  "seePhotoStatistics": "Statistiken zum Foto anzeigen"
 }

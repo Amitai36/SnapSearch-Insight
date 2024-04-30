@@ -88,5 +88,9 @@
     "incoming flow count:": "flux entrant :",
     "outgoing flow count:": "flux sortant :",
     "kde:": "est. par noyau :"
-  }
+  },
+  "seeMoreOnMap": "Voir sur la carte",
+  "showMorePhotoFromArtist": "Voir plus de photos de l'artiste",
+  "seeUserStatistics": "Voir plus de statistiques sur l'artiste",
+  "seePhotoStatistics": "Voir les statistiques de la photo"
 }
