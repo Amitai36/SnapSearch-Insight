@@ -5,21 +5,9 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
-interface SearchProps {
-  inputRef?: React.MutableRefObject<null>;
-}
-
-function Search(props: SearchProps) {
-  const [isFocused, setIsFocused] = useState(false);
+function Search() {
   const inputRef = React.useRef<HTMLInputElement>();
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [inputRef.current]);
-
-  const setTextInputRef = (element: HTMLInputElement) => {
-    inputRef.current = element;
-  };
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
@@ -28,13 +16,9 @@ function Search(props: SearchProps) {
 
   useHotkeys("ctrl+i", () => {
     if (inputRef.current) {
-      setIsFocused(true);
       inputRef?.current.focus();
     }
   });
-  useEffect(() => {
-    if (isFocused) console.log(inputRef?.current);
-  }, [isFocused]);
   const handleSearch = () => {
     navigate(`search?element=${value}&page=${1}`);
   };
@@ -56,15 +40,8 @@ function Search(props: SearchProps) {
         }}
       >
         <TextField
-          ref={(setTextInputRef) => {
-            if (setTextInputRef) {
-              setTextInputRef.focus();
-            }
-          }}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => setIsFocused(false)}
+          placeholder="crtl + i"
+          inputRef={inputRef}
           label={searchLable}
           InputLabelProps={{ shrink: true }}
           onKeyDown={(e) => {
