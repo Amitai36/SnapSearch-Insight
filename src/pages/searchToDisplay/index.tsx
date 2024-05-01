@@ -6,7 +6,9 @@ import seePhotoStatistics from "../../../public/images/see_photo_statistics.png"
 import seeUserStatistics from "../../../public/images/see_user_statistics.png";
 import showMorePhotoFromArtist from "../../../public/images/show_more_photo_from_artist.png";
 import { useTranslation } from "react-i18next";
+
 function SearchToDisplay() {
+
   const { t } = useTranslation();
   const photos: { lable: string; imgSrc: string }[] = [
     { imgSrc: searchImage, lable: t("searchImage") },
