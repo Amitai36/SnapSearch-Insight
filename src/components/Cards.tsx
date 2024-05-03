@@ -142,7 +142,6 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
                       navigate("/map", {
                         state: {
                           location: user.location ?? "",
-                          description: alt,
                           title: res?.tags ? res.tags[0].title : "",
                           url: res.urls.thumb ?? "",
                         },
@@ -198,11 +197,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {res?.tags?.map((tag, index) => (
-              <Typography
-                onFocus={() => console.log("f")}
-                component="span"
-                key={index}
-              >
+              <Typography component="span" key={index}>
                 {
                   tag?.source?.cover_photo?.alternative_slugs[
                     language as keyof Results["alternative_slugs"]

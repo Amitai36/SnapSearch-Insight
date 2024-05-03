@@ -68,9 +68,7 @@
     "lat:": "lat:",
     "lon:": "lon:",
     "q1:": "q1:",
-    "q3:": "q
-
-3:",
+    "q3:": "q3:",
     "source:": "fonte:",
     "target:": "alvo:",
     "lower fence:": "cerca inferior:",
@@ -94,5 +92,14 @@
   "seeMoreOnMap": "Ver no mapa",
   "showMorePhotoFromArtist": "Ver mais fotos do artista",
   "seeUserStatistics": "Ver mais estatísticas sobre o artista",
-  "seePhotoStatistics": "Ver estatísticas sobre a foto"
+  "seePhotoStatistics": "Ver estatísticas sobre a foto",
+  "accessMin": "População tem acesso a serviços em uma caminhada de 15 minutos.",
+  "openPublicSpaces": "Espaços públicos abertos",
+  "publicTransportationInfrastructure": "Infraestrutura de transporte público: ",
+  "foodAndDiningServices": "Serviços de alimentação e restaurantes: ",
+  "healthcareFacilities": "Instalações de saúde: ",
+  "educationFacilities": "Instalações educacionais: ",
+  "communitySpaces": "Espaços comunitários: ",
+  "LeisureAndCulturalFacilities": "Instalações de lazer e culturais: ",
+  "Accessibility details in the country": "Detalhes de acessibilidade no país"
 }

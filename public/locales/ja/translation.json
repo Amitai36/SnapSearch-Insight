@@ -89,5 +89,14 @@
   "seeMoreOnMap": "地図で表示する",
   "showMorePhotoFromArtist": "アーティストの写真をもっと見る",
   "seeUserStatistics": "アーティストの統計情報をもっと見る",
-  "seePhotoStatistics": "写真の統計情報を見る"
+  "seePhotoStatistics": "写真の統計情報を見る",
+  "accessMin": "の人口が15分以内にサービスにアクセスできます。",
+  "openPublicSpaces": "オープンな公共スペース",
+  "publicTransportationInfrastructure": "公共交通機関のインフラストラクチャ：",
+  "foodAndDiningServices": "飲食サービス：",
+  "healthcareFacilities": "医療施設：",
+  "educationFacilities": "教育施設：",
+  "communitySpaces": "コミュニティスペース：",
+  "LeisureAndCulturalFacilities": "レジャー施設および文化施設：",
+  "Accessibility details in the country": "国内のアクセシビリティの詳細"
 }

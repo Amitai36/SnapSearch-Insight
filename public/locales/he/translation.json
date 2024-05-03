@@ -31,5 +31,14 @@
   "seeMoreOnMap": "ראה על מפה",
   "showMorePhotoFromArtist": "ראה עוד תמונות של היוצר",
   "seeUserStatistics": "ראה עוד סטטיסטיקות על האומן",
-  "seePhotoStatistics": "ראה סטטיסטיקות על התמונה"
+  "seePhotoStatistics": "ראה סטטיסטיקות על התמונה",
+  "accessMin": "מהאוכלוסייה יש גישה לשירותים במרחק הליכה של 15 דקות",
+  "openPublicSpaces": "מרחבים ציבוריים פתוחים",
+  "publicTransportationInfrastructure": "תשתיות לתחבורה ציבורית: ",
+  "foodAndDiningServices": "שירותי אוכל ומזון: ",
+  "healthcareFacilities": "מתקני בריאות: ",
+  "educationFacilities": "מתקני חינוך: ",
+  "communitySpaces": "מרחבים קהילתיים: ",
+  "LeisureAndCulturalFacilities": "מתקני פנאי ותרבות: ",
+  "Accessibility details in the country": "פרטי נגישות במדינה"
 }
