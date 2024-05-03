@@ -92,5 +92,14 @@
   "seeMoreOnMap": "Voir sur la carte",
   "showMorePhotoFromArtist": "Voir plus de photos de l'artiste",
   "seeUserStatistics": "Voir plus de statistiques sur l'artiste",
-  "seePhotoStatistics": "Voir les statistiques de la photo"
+  "seePhotoStatistics": "Voir les statistiques de la photo",
+  "accessMin": "La population a accès à des services dans un rayon de 15 minutes à pied.",
+  "openPublicSpaces": "Espaces publics ouverts",
+  "publicTransportationInfrastructure": "Infrastructure de transport en commun : ",
+  "foodAndDiningServices": "Services alimentaires et de restauration : ",
+  "healthcareFacilities": "Établissements de santé : ",
+  "educationFacilities": "Établissements d'enseignement : ",
+  "communitySpaces": "Espaces communautaires : ",
+  "LeisureAndCulturalFacilities": "Équipements de loisirs et culturels : ",
+  "Accessibility details in the country": "Détails d'accessibilité dans le pays"
 }

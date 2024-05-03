@@ -92,5 +92,14 @@
   "seeMoreOnMap": "See on map",
   "showMorePhotoFromArtist": "See more photos from the artist",
   "seeUserStatistics": "See more statistics about the artist",
-  "seePhotoStatistics": "See statistics about the photo"
+  "seePhotoStatistics": "See statistics about the photo",
+  "accessMin": "Of the population have access to services within a 15 minute walk.",
+  "openPublicSpaces": "Open public spaces",
+  "publicTransportationInfrastructure": "Public transportation infrastructure: ",
+  "foodAndDiningServices": "Food and dining services: ",
+  "healthcareFacilities": "Healthcare facilities: ",
+  "educationFacilities": "Education facilities: ",
+  "communitySpaces": "Community spaces: ",
+  "LeisureAndCulturalFacilities": "Leisure and cultural facilities: ",
+  "Accessibility details in the country": "Accessibility details in the country"
 }

@@ -92,5 +92,15 @@
   "seeMoreOnMap": "Auf Karte anzeigen",
   "showMorePhotoFromArtist": "Weitere Fotos des Künstlers anzeigen",
   "seeUserStatistics": "Mehr Statistiken über den Künstler anzeigen",
-  "seePhotoStatistics": "Statistiken zum Foto anzeigen"
+  "seePhotoStatistics": "Statistiken zum Foto anzeigen",
+  "accessMin": "der Bevölkerung Zugang zu Dienstleistungen innerhalb von 15 Minuten zu Fuß.",
+  "openPublicSpaces": "Offene öffentliche Räume",
+  "publicTransportationInfrastructure": "Öffentliche Verkehrsinfrastruktur: ",
+  "foodAndDiningServices": "Essens- und Speiseservice: ",
+  "healthcareFacilities": "Gesundheitseinrichtungen: ",
+  "educationFacilities": "Bildungseinrichtungen: ",
+  "communitySpaces": "Gemeinschaftsräume: ",
+  "LeisureAndCulturalFacilities": "Freizeit- und Kultureinrichtungen: ",
+  "Accessibility details in the country": "Tilgængelighedsdetaljer i landet"
+
 }
