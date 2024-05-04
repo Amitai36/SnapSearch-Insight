@@ -102,5 +102,6 @@
   "educationFacilities": "교육 시설: ",
   "communitySpaces": "커뮤니티 공간: ",
   "LeisureAndCulturalFacilities": "레저 및 문화 시설: ",
-  "Accessibility details in the country": "국가 내 접근성 세부 정보"
+  "Accessibility details in the country": "국가 내 접근성 세부 정보",
+  "no data": "정보가 없습니다. 좀 더 구체적으로 지정해 주세요."
 }

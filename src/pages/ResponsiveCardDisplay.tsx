@@ -9,17 +9,22 @@ function ResponsiveCardDisplay(props: ResponsiveCardDisplayProps) {
   const matches730 = useMediaQuery("(min-width:730px)");
   const matches500 = useMediaQuery("(min-width:500px)");
   const { items } = props;
+
   return (
-    <Grid container display={"flex"} justifyContent={"center"}>
+    <Grid container spacing={2} width={"100%"}>
       {items.map((res, index) => {
         return (
           <Grid
-            mt={"2%"}
             key={index}
             xs={matches730 ? 4 : matches500 ? 6 : 12}
             item
+            width={"100%"}
           >
-            {res?.id ? <CardsToDisplayImages res={res} /> : <LoaderCard />}
+            {res && "id" in res ? (
+              <CardsToDisplayImages res={res} />
+            ) : (
+              <LoaderCard />
+            )}
           </Grid>
         );
       })}

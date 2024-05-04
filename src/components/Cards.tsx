@@ -81,7 +81,7 @@ export default function CardsToDisplayImages({ res }: { res: Results }) {
   };
 
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", justifyContent: "center", display: "flex" }}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={<Avatar src={user.profile_image.small} />}
