@@ -8,7 +8,6 @@ import showMorePhotoFromArtist from "../../../public/images/show_more_photo_from
 import { useTranslation } from "react-i18next";
 
 function SearchToDisplay() {
-
   const { t } = useTranslation();
   const photos: { lable: string; imgSrc: string }[] = [
     { imgSrc: searchImage, lable: t("searchImage") },
@@ -17,6 +16,7 @@ function SearchToDisplay() {
     { imgSrc: seeUserStatistics, lable: t("seeUserStatistics") },
     { imgSrc: seePhotoStatistics, lable: t("seePhotoStatistics") },
   ];
+
   return (
     <div
       style={{

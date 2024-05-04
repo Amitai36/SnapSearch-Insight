@@ -6,8 +6,8 @@ import Display from "./searchToDisplay/Display";
 
 function DisplaySearchRes() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get("page")
-    ? parseInt(searchParams.get("page"))
+  const page = searchParams?.get("page")
+    ? parseInt(searchParams.get("page")!)
     : 1;
   const element = searchParams.get("element") as string;
   const [pageNumber, setPageNumber] = React.useState(page);
