@@ -6,12 +6,12 @@ import { useLocation } from "react-router-dom";
 import * as intl from "@arcgis/core/intl.js";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Point from "@arcgis/core/geometry/Point";
-import LayerList from "@arcgis/core/widgets/LayerList";
 import Query from "@arcgis/core/rest/support/Query";
 import { useTranslation } from "react-i18next";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography, useTheme } from "@mui/material";
 import ListComponent from "./ListComponent";
 import ReactLoading from "react-loading";
+
 interface MapProps {
   location: string;
   url: string;
@@ -19,7 +19,19 @@ interface MapProps {
   title: string;
 }
 
+const detailCountry = new FeatureLayer({
+  url: "https://services7.arcgis.com/IyvyFk20mB7Wpc95/arcgis/rest/services/World_countries_accessibility_indicators/FeatureServer",
+  popupEnabled: true,
+});
+
+const parsePrasage = (number: number) => {
+  return `${(number * 100).toFixed()}%`;
+};
+
 function UseMap() {
+  const {
+    palette: { mode },
+  } = useTheme();
   const [searchOnPolygon, setSearchOnPolygon] = useState<{
     accessMin: string;
     openPublicSpaces: string;
@@ -67,17 +79,13 @@ function UseMap() {
 
   React.useEffect(() => {
     const map = new Map({
-      basemap: "streets-night-vector",
+      basemap: mode === "dark" ? "streets-night-vector" : "streets-vector",
     });
 
     const view = new MapView({
-      map: map,
+      map,
       container: "mapDiv",
       zoom: 3,
-    });
-    const detailCountry = new FeatureLayer({
-      url: "https://services7.arcgis.com/IyvyFk20mB7Wpc95/arcgis/rest/services/World_countries_accessibility_indicators/FeatureServer",
-      popupEnabled: true,
     });
     view.when(async () => {
       const searchWidget = new Search({
@@ -111,18 +119,16 @@ function UseMap() {
               const features = result.features;
               const data = features[0].attributes;
               setSearchOnPolygon({
-                accessMin: `${(data.c_pois * 100).toFixed(0)}%`,
-                openPublicSpaces: `${(data.c_active * 100).toFixed(0)}%`,
-                publicTransportationInfrastructure: `${(
-                  data.c_mobility * 100
-                ).toFixed(0)}%`,
-                foodAndDiningServices: `${(data.c_food * 100).toFixed(0)}%`,
-                healthcareFacilities: `${(data.c_health * 100).toFixed(0)}%`,
-                educationFacilities: `${(data.c_educatio * 100).toFixed(0)}%`,
-                communitySpaces: `${(data.c_communit * 100).toFixed(0)}%`,
-                LeisureAndCulturalFacilities: `${(
-                  data.c_nightlif * 100
-                ).toFixed(0)}%`,
+                accessMin: parsePrasage(data.c_pois),
+                openPublicSpaces: parsePrasage(data.c_active),
+                publicTransportationInfrastructure: parsePrasage(
+                  data.c_mobility
+                ),
+                foodAndDiningServices: parsePrasage(data.c_food),
+                healthcareFacilities: parsePrasage(data.c_health),
+                educationFacilities: parsePrasage(data.c_educatio),
+                communitySpaces: parsePrasage(data.c_communit),
+                LeisureAndCulturalFacilities: parsePrasage(data.c_nightlif),
               });
             })
             .catch((error) => {
@@ -130,12 +136,8 @@ function UseMap() {
             });
         }
       });
-      const layerList = new LayerList({
-        view,
-      });
-      view.ui.add(layerList, "top-right");
     });
-  }, [language]);
+  }, [language, mode]);
 
   return (
     <Grid container height={"100%"}>
@@ -145,8 +147,6 @@ function UseMap() {
         </Typography>
         <Paper
           sx={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
             height: "100%",
           }}
         >

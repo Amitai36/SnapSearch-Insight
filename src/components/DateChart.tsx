@@ -4,6 +4,7 @@ import {
   CardHeader,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import Plot from "react-plotly.js";
@@ -21,6 +22,10 @@ function DateChart(props: DateChartProps) {
     t,
     "1": { language },
   } = useTranslation();
+  const { palette } = useTheme();
+  const mode = palette.mode;
+  const textColor = mode === "dark" ? "#fff" : "black";
+  const background = palette.background.default;
   const totalWord = t("total");
   const Dates = t("Dates");
   const Sum = t("Sum");
@@ -47,9 +52,9 @@ function DateChart(props: DateChartProps) {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <Card sx={{ height: "100%" }}>
+      <Card sx={{ height: "100%", background }}>
         <CardHeader
-          sx={{ height: "5%" }}
+          sx={{ height: "5%", background }}
           title={
             <div style={{ display: "flex", justifyContent: "center" }}>
               {toolTip && (
@@ -57,7 +62,7 @@ function DateChart(props: DateChartProps) {
                   <InfoIcon />
                 </Tooltip>
               )}
-              <Typography bgcolor={"#3c4650"}>
+              <Typography>
                 {totalWord}: {total}
               </Typography>
             </div>
@@ -95,13 +100,13 @@ function DateChart(props: DateChartProps) {
                 text: title,
                 xanchor: "center",
                 font: {
-                  color: "#FFF",
+                  color: textColor,
                 },
               },
-              paper_bgcolor: "#37414b",
-              plot_bgcolor: "#37414b",
-              xaxis: { color: "#FFF", title: Dates },
-              yaxis: { color: "#FFF", title: Sum },
+              paper_bgcolor: mode === "dark" ? "#37414b" : background,
+              plot_bgcolor: mode === "dark" ? "#37414b" : background,
+              xaxis: { color: textColor, title: Dates },
+              yaxis: { color: textColor, title: Sum },
               height: 400,
               width: 400,
             }}

@@ -4,7 +4,7 @@ import { Button, InputAdornment, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -39,7 +39,7 @@ function Search() {
   const handleSearch = () => {
     navigate(`search?element=${value}&page=${1}`);
   };
-  const { pathname } = useLocation();
+
   useEffect(() => {
     setValue(transcript);
     if (finalTranscript) {
@@ -60,7 +60,6 @@ function Search() {
         style={{
           width: "100%",
           height: "100%",
-          boxShadow: pathname === "/" ? "0px 0px 20px 20px grey" : undefined,
           justifyItems: "center",
         }}
       >

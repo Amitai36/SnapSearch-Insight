@@ -16,10 +16,17 @@ interface ProviderThemeProps {
 }
 
 function ProviderTheme(props: ProviderThemeProps) {
-  const [darkMode, setDarkMode] = React.useState<PaletteMode>("dark");
+  const localStorage = window.localStorage;
+  const [darkMode, setDarkMode] = React.useState<PaletteMode>(
+    (localStorage.getItem("dark") as PaletteMode) ?? "dark"
+  );
 
   const toggleTheme = () => {
     setDarkMode((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    window.localStorage.setItem(
+      "dark",
+      darkMode === "light" ? "dark" : "light"
+    );
   };
 
   const theme = React.useMemo(
@@ -27,13 +34,21 @@ function ProviderTheme(props: ProviderThemeProps) {
       createTheme({
         palette: {
           mode: darkMode,
+          background: {
+            default: darkMode === "dark" ? "black" : "#e2f2f2",
+          },
         },
         direction: "rtl",
         components: {
           MuiTextField: {
-            defaultProps: {
-              sx: {
-                // backgroundColor: darkMode === "dark" ? "#1e1e1e" : "#ffffff",
+            styleOverrides: {
+              root: {
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderRadius: 50,
+                    borderColor: "yellow solid",
+                  },
+                },
               },
             },
           },
