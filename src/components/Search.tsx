@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import { Mic, MicNone, SearchOff } from "@mui/icons-material";
+import { CameraAlt, Mic, MicNone, SearchOff } from "@mui/icons-material";
 import { Button, InputAdornment, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import DialogComponent from "./DialogComponent";
+import Camera from "./Camera";
 
 function Search() {
   const inputRef = React.useRef<HTMLInputElement>();
@@ -30,6 +32,7 @@ function Search() {
   const dir = i18n.dir();
   const searchLable = t("searchImage");
   const [value, setValue] = React.useState("");
+  const [openCam, setOpenCam] = React.useState(false);
 
   useHotkeys("ctrl+i", () => {
     if (inputRef.current) {
@@ -43,7 +46,7 @@ function Search() {
   useEffect(() => {
     setValue(transcript);
     if (finalTranscript) {
-      navigate(`search?element=${value}&page=${1}`);
+      handleSearch();
     }
   }, [i18n, transcript, finalTranscript]);
 
@@ -105,11 +108,22 @@ function Search() {
                     )}
                   </Button>
                 )}
+                <Button onClick={() => setOpenCam(true)}>
+                  <CameraAlt />
+                </Button>
               </InputAdornment>
             ),
           }}
         />
       </div>
+      {openCam && (
+        <DialogComponent
+          open={openCam}
+          setOpen={setOpenCam}
+          title={{ color: "red", text: "camera" }}
+          content={<Camera setOpenCam={setOpenCam} />}
+        />
+      )}
     </div>
   );
 }

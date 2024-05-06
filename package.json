@@ -16,6 +16,8 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@tensorflow-models/coco-ssd": "^2.2.3",
+    "@tensorflow-models/mobilenet": "^2.1.1",
+    "@tensorflow/tfjs": "^4.19.0",
     "@types/i18n": "^0.13.12",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
